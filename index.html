@@ -11,7 +11,7 @@
     <script>
       (() => {
         const forwarded = new URLSearchParams();
-        for (const name of ["code", "state", "error", "error_description"]) {
+        for (const name of ["code", "state", "device_id", "error", "error_description"]) {
           const value = new URLSearchParams(window.location.search).get(name);
           if (value !== null) forwarded.set(name, value);
         }
