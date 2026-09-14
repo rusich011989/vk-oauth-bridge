@@ -4,20 +4,16 @@
     <meta charset="utf-8">
     <meta name="robots" content="noindex,nofollow">
     <meta name="referrer" content="no-referrer">
-    <title>Returning to local authorization helper</title>
+    <title>VK ID authorization received</title>
   </head>
   <body>
-    <p>Returning to the local authorization helper…</p>
+    <h1>VK ID authorization received</h1>
+    <p>Copy the complete current URL from the browser address bar and paste it into the local OAuth helper terminal.</p>
+    <p>This page does not redirect to localhost and does not store or log callback values.</p>
+    <code id="callback-url"></code>
     <script>
       (() => {
-        const forwarded = new URLSearchParams();
-        for (const name of ["code", "state", "device_id", "error", "error_description"]) {
-          const value = new URLSearchParams(window.location.search).get(name);
-          if (value !== null) forwarded.set(name, value);
-        }
-        const localCallback = new URL("https://127.0.0.1:8765/callback");
-        localCallback.search = forwarded.toString();
-        window.location.replace(localCallback.href);
+        document.getElementById("callback-url").textContent = window.location.href;
       })();
     </script>
   </body>
