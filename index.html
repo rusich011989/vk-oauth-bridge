@@ -1,11 +1,24 @@
 <!doctype html>
-<html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <title>VK OAuth Bridge</title>
-</head>
-<body>
-  <h1>VK OAuth Bridge</h1>
-  <p>GitHub Pages работает.</p>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="referrer" content="no-referrer">
+    <title>Returning to local authorization helper</title>
+  </head>
+  <body>
+    <p>Returning to the local authorization helper…</p>
+    <script>
+      (() => {
+        const forwarded = new URLSearchParams();
+        for (const name of ["code", "state", "error", "error_description"]) {
+          const value = new URLSearchParams(window.location.search).get(name);
+          if (value !== null) forwarded.set(name, value);
+        }
+        const localCallback = new URL("https://127.0.0.1:8765/callback");
+        localCallback.search = forwarded.toString();
+        window.location.replace(localCallback.href);
+      })();
+    </script>
+  </body>
 </html>
